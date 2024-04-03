@@ -51,28 +51,28 @@ class TestParentNode(unittest.TestCase):
         )
         self.assertEqual(node.to_html(), '<p href="https://www.google.com"><b>Bold text</b>Normal text<i>italic text</i>Normal text</p>')
 
-    # def test_to_html_with_nested_children(self):
-    #     node = ParentNode(
-    #         "p",
-    #         [
-    #             LeafNode("b", "Bold text"),
-    #             LeafNode(None, "Normal text"),
-    #             LeafNode("i", "italic text"),
-    #             LeafNode(None, "Normal text"),
-    #             ParentNode(
-    #                 "p",
-    #                 [
-    #                     LeafNode("b", "nested Bold text"),
-    #                     LeafNode(None, "nested Normal text"),
-    #                     LeafNode("i", "nested italic text"),
-    #                     LeafNode(None, "nested Normal text"),
-    #                 ],
-    #             )
-    #         ],
-    #     )
-    #     self.assertEqual(node.to_html(), '<p><b>Bold text</b>Normal text<i>italic text</i>Normal text<p>'
-    #                                      '<b>nested Bold text</b>nested Normal text<i>nested italic text'
-    #                                      '</i>nested Normal text</p></p>')
+    def test_to_html_with_nested_children(self):
+        node = ParentNode(
+            "p",
+            [
+                LeafNode("b", "Bold text"),
+                LeafNode(None, "Normal text"),
+                LeafNode("i", "italic text"),
+                LeafNode(None, "Normal text"),
+                ParentNode(
+                    "p",
+                    [
+                        LeafNode("b", "nested Bold text"),
+                        LeafNode(None, "nested Normal text"),
+                        LeafNode("i", "nested italic text"),
+                        LeafNode(None, "nested Normal text"),
+                    ],
+                )
+            ],
+        )
+        self.assertEqual(node.to_html(), '<p><b>Bold text</b>Normal text<i>italic text</i>Normal text<p>'
+                                         '<b>nested Bold text</b>nested Normal text<i>nested italic text'
+                                         '</i>nested Normal text</p></p>')
 
 if __name__ == '__main__':
     unittest.main()
