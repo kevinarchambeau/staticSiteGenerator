@@ -49,7 +49,8 @@ class TestParentNode(unittest.TestCase):
             ],
             {"href": "https://www.google.com"}
         )
-        self.assertEqual(node.to_html(), '<p href="https://www.google.com"><b>Bold text</b>Normal text<i>italic text</i>Normal text</p>')
+        self.assertEqual(node.to_html(), '<p href="https://www.google.com"><b>Bold text</b>Normal text'
+                                         '<i>italic text</i>Normal text</p>')
 
     def test_to_html_with_nested_children(self):
         node = ParentNode(
