@@ -1,6 +1,6 @@
 import unittest
 
-from textnode import TextNode
+from textnode import TextNode, text_node_to_html_node
 
 
 class TestTextNode(unittest.TestCase):
@@ -23,6 +23,7 @@ class TestTextNode(unittest.TestCase):
         node = TextNode("This is a text node", "something", "other")
         node2 = TextNode("This is a text node", "bold")
         self.assertFalse(node.__eq__(node2))
+
 
 if __name__ == "__main__":
     unittest.main()
