@@ -30,8 +30,8 @@ class LeafNode(HTMLNode):
         return f"LeafNode(tag: {self.tag}, value: {self.value}, props: {self.props})"
 
     def to_html(self):
-        if not self.value:
-            raise ValueError
+        if self.value is None:
+            raise ValueError("No value")
 
         if not self.tag:
             return self.value
@@ -48,7 +48,7 @@ class ParentNode(HTMLNode):
 
     def to_html(self):
         if not self.tag:
-            raise ValueError
+            raise ValueError("No tag")
 
         if not self.children:
             raise ValueError("No children")
