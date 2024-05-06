@@ -14,6 +14,7 @@ def setup_public():
 def generate_page(from_path, template_path, dest_path):
     print(f"generating {from_path}, using {template_path}, to {dest_path}")
     markdown = open(from_path).read()
+    os.makedirs(os.path.dirname(dest_path), exist_ok=True)
     destination = open(dest_path, "w")
     title = extract_title(markdown)
     if not title:
@@ -28,10 +29,24 @@ def generate_page(from_path, template_path, dest_path):
     destination.close()
 
 
+def generate_pages_recursive(dir_path_content, template_path, dest_dir_path):
+    files = os.listdir(dir_path_content)
+
+    for file in files:
+        path = f"{dir_path_content}/{file}"
+        if os.path.isfile(path):
+            destination = f"{dest_dir_path}/{file.replace(".md", ".html")}"
+            print(f"{path}, {template_path}, {destination}")
+            generate_page(path, template_path, destination)
+        elif os.path.isdir(path):
+            destination = f"{dest_dir_path}/{file}"
+            generate_pages_recursive(path, template_path, destination)
+
+
 def main():
     setup_public()
-    print("converting file")
-    generate_page("content/index.md", "template.html", "public/index.html")
+    # generate_page("content/index.md", "template.html", "public/index.html")
+    generate_pages_recursive("content", "template.html", "public")
 
 
 main()
