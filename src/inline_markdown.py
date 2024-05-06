@@ -40,6 +40,10 @@ def extract_markdown_links(text):
     return re.findall(r"\[(.*?)\]\((.*?)\)", text)
 
 
+def extract_title(text):
+    return re.search(r"^(#) .*", text)
+
+
 def split_nodes_image(old_nodes):
     new_nodes = []
     for node in old_nodes:
